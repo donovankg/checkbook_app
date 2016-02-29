@@ -1,0 +1,4 @@
+# files that should not be recorded in the repository, such as 3rd party code
+
+#ignore the vender dir, where composer installs 3rd party code
+vendor/
