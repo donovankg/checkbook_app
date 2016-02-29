@@ -88,5 +88,22 @@ class TransactionDataAccess{
 		return $t;
 	}
 
+	function get_transaction_categories_for_selectbox(){
+		$qStr = "SELECT id, name FROM transaction_categories";
 
+		//die($qStr);
+		
+		$result = mysqli_query($this->link, $qStr);
+		//die(mysqli_error($this->link)); // THIS WILL SAVE YOUR LIFE IN DEBUGGING!!!
+
+		$categories = array();
+		while($row = mysqli_fetch_array($result)){
+			//echo($row['id'] . ":" . $row['name'] . "<br>");
+			$categories[] = array(
+				'value' => $row['id'],
+				'text' => htmlentities($row['name'])
+				);
+		}
+	return $categories;
+	}
 }

@@ -12,6 +12,14 @@
 require_once('includes/config.inc.php');
 require_once("includes/models/Transaction.php"); 
 require_once('includes/dataaccess/TransactionDataAccess.php');
+require_once('includes/models/Utils.php');
+// test code
+$da = new TransactionDataAccess($link);
+$Utils = new Utils();
+//get the sekect box options for transaction categorities
+$options = $da-> get_transaction_categories_for_selectbox();
+
+
 
 
 /*
@@ -87,8 +95,8 @@ if(isset($_POST['btnSubmit'])){
 	DATE (yyyy-mm-dd): <input type="text" name="txtDate" id="txtDate" value="<?php echo($transaction->date); ?>" />
 	<span class="validation" id="vDate"></span>
 	<br>
-	
-	CATEGORY: <input type="text" name="txtCategoryId" id="txtCategoryId" value="<?php echo($transaction->transaction_category_id); ?>" />
+
+	CATEGORY: <?php echo ($Utils -> create_select_box("txtCategoryId",$options, 0));?>
 	<span class="validation" id="vCategoryId"></span>
 	<br>
 	
