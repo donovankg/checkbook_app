@@ -89,8 +89,8 @@ class TransactionDataAccess{
 	}
 
 	function get_transaction_categories_for_selectbox(){
-		$qStr = "SELECT id, name FROM transaction_categories";
-
+		//$qStr = "SELECT id, name FROM transaction_categories";
+		  $qStr = "SELECT id, CONCAT(name, '( ', type, ')') as name FROM transaction_categories";
 		//die($qStr);
 		
 		$result = mysqli_query($this->link, $qStr);
