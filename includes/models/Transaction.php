@@ -37,7 +37,7 @@ class Transaction {
 		$errs = array();
 
 		// validate id - NOTE THAT 0 is a valid id, allows for inserts
-		if(is_int($this->id) !== true || $this->id < 0){
+		if(is_numeric($this->id) !== true || $this->id < 0){
 			$errs['id'] = "ID is not valid";
 		}
 
@@ -45,8 +45,8 @@ class Transaction {
 		// TODO: We will eventually want to allow m/d/Y
 		// but for now we'll just go with what mysql wants Y-m-d
 		
-		//if(DateTime::createFromFormat('m/d/Y', $this->date) === false){
-		if(DateTime::createFromFormat('Y-m-d', $this->date) === false){
+		if(DateTime::createFromFormat('m/d/Y', $this->date) === false){
+		//if(DateTime::createFromFormat('Y-m-d', $this->date) === false){
 			$errs['date'] = "The date is not valid";
 		}
 		
@@ -56,7 +56,7 @@ class Transaction {
 		}
 
 		// validate transaction_category_id
-		if(is_int($this->transaction_category_id) !== true || $this->transaction_category_id < 0){
+		if(is_numeric($this->transaction_category_id) !== true || $this->transaction_category_id < 0){
 			$errs['transaction_category_id'] = "Category ID is not valid";
 		}
 

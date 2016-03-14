@@ -92,7 +92,7 @@ if(isset($_POST['btnSubmit'])){
 	
 	<input type="hidden" name="txtId" id="txtId" value="<?php echo($transaction->id); ?>" />
 	
-	DATE (yyyy-mm-dd): <input type="text" name="txtDate" id="txtDate" value="<?php echo($transaction->date); ?>" />
+	DATE (mm/dd/yyyy): <input type="text" name="txtDate" id="txtDate" value="<?php echo($transaction->date); ?>" />
 	<span class="validation" id="vDate"></span>
 	<br>
 
@@ -141,14 +141,15 @@ jQuery(function(){
 			var focusOn = null;
 
 			// validate date - it should be in yyyy-mm-dd format for MySQL
-			var regExpDate = /^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/;
+			//var regExpDate = /^[0-9]{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])/;
+			var regExpDate = /^(0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])[\/\-]\d{4}$/;
 			
 			if(date == ""){
 				$("#vDate").text("Please enter a date.");
 				focusOn = focusOn || $("#txtDate");
 				isValid = false;
 			}else if(regExpDate.test(date) === false){
-				$("#vDate").text("Date must be in yyyy-mm-dd format.");
+				$("#vDate").text("Date must be in mm-dd-yyyy format.");
 				focusOn = focusOn || $("#txtDate");
 				isValid = false;
 			}

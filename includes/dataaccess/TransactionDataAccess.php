@@ -30,8 +30,8 @@ class TransactionDataAccess{
 	* @return Transaction[] 	Returns an array of transaction rows
 	*/
 	function get_all_transactions(){
-		$qStr = "SELECT id, date, amount, transaction_category_id, notes FROM transactions";
-
+		//$qStr = "SELECT id, date, amount, transaction_category_id, notes FROM transactions";
+		$qStr = "SELECT id, DATE_FORMAT(date, '%m/%d/%Y') as date, amount, transaction_category_id, notes FROM transactions";
 		$result = mysqli_query($this->link, $qStr);
 		//die(mysqli_error($this->link)); // THIS WILL SAVE YOUR LIFE IN DEBUGGING!!!
 
@@ -62,7 +62,7 @@ class TransactionDataAccess{
 	 * @return array|null 		An assoc array with the data for a transaction
 	 */
 	function get_transaction_by_id($id){
-		$qStr = "SELECT id, date, amount, transaction_category_id, notes FROM transactions WHERE id = " . mysqli_real_escape_string($this->link, $id);
+		$qStr = "SELECT id, DATE_FORMAT(date, '%m/%d/%Y') as date, amount, transaction_category_id, notes FROM transactions WHERE id = " . mysqli_real_escape_string($this->link, $id);
 
 		//die($qStr);
 		
