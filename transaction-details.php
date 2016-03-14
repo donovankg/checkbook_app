@@ -63,8 +63,13 @@ if(isset($_POST['btnSubmit'])){
 	$transaction->notes = $_POST['txtNotes'];
 
 	if($transaction->is_valid() === true){
-		die("THANK YOU, if this is a new transaction we'll insert, if it already exists, we'll update it");
-		// HOW CAN WE DETERMINE IF WE NEED TO INSERT OR UPDATE???
+		if ($transaction->id == 0) {
+			die("INSERT");
+		}else{
+			die("UPDATE");
+		}
+
+
 	}else{
 		$errs = $transaction->is_valid();
 		var_dump($errs);
