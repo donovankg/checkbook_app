@@ -104,7 +104,7 @@ if(isset($_POST['btnSubmit'])){
 	<span class="validation" id="vAmount"></span>
 	<br>
 
-	NOTES: <input type="text" name="txtNotes" id="txtNotes" values="<?php echo($transaction->notes); ?>" /><br>
+	NOTES: <input type="text" name="txtNotes" id="txtNotes" value="<?php echo($transaction->notes); ?>" /><br>
 	<input type="submit" name="btnSubmit" value="SUBMIT" />
 </form>
 
