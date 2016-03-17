@@ -68,9 +68,12 @@ if(isset($_POST['btnSubmit'])){
 
 	if($transaction->is_valid() === true){
 		if ($transaction->id == 0) {
-			die("INSERT");
+			// do an insert
+			$transaction = $da->insert_transaction($transaction);
+			header("Location: transaction-list.php");
 		}else{
-			die("UPDATE");
+			$transaction = $da->update_transaction($transaction);
+			header("Location: transaction-list.php");
 		}
 
 

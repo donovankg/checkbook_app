@@ -106,4 +106,76 @@ class TransactionDataAccess{
 		}
 	return $categories;
 	}
+	/**
+	* Inserts a transaction into the database.
+	*
+	* @param Transaction $transaction
+	*
+	* @return Transaction|false 	Returns the transaction object (with the insert id)
+	*								or false if the insert does not succeed.
+	*/
+	function insert_transaction($transaction){
+		
+		// we need to escape the transaction notes:
+		$escaped_notes = mysqli_escape_string($this->link, $transaction->notes);
+
+		// we also need to format the date for MySQL yyyy-mm-dd
+		$formatted_date = date( 'Y-m-d', strtotime($transaction->date));
+
+		$qStr = "INSERT INTO transactions (
+					date,
+					amount,
+					transaction_category_id,
+					notes
+				) VALUES (
+					'$formatted_date',
+					$transaction->amount,
+					$transaction->transaction_category_id,
+					'$escaped_notes'
+				)";
+
+		//die($qStr);
+		
+		if(mysqli_query($this->link, $qStr)){
+			$transaction->id = mysqli_insert_id($this->link);
+			return $transaction;
+		}else{
+			//die(mysqli_error($this->link));
+			return false;
+		}
+	}
+
+	/**
+	* Updates a transaction in the database.
+	*
+	* @param Transaction $transaction
+	*
+	* @return Transaction|false 	Returns the transaction object (with the insert id)
+	*								or false if the insert does not succeed.
+	*/
+	function update_transaction($transaction){
+		
+		// we need to escape the transaction notes:
+		$escaped_notes = mysqli_escape_string($this->link, $transaction->notes);
+
+		// we also need to format the date for MySQL yyyy-mm-dd
+		$formatted_date = date('Y-m-d', strtotime($transaction->date));
+
+		$qStr = "UPDATE transactions SET
+					date = '$formatted_date',
+					amount = $transaction->amount,
+					transaction_category_id = $transaction->transaction_category_id,
+					notes = '$escaped_notes'
+				WHERE id = $transaction->id";
+				
+		//die($qStr);
+		
+		if(mysqli_query($this->link, $qStr)){
+			$transaction->id = mysqli_insert_id($this->link);
+			return $transaction;
+		}else{
+			//die(mysqli_error($this->link));
+			return false;
+		}
+	}
 }
