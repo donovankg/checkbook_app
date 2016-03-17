@@ -7,6 +7,10 @@
 * @author Niall Kader
 */
 
+//this variable will turn the debug mode on (for development)
+//and off (for production)
+global $debug_mode;
+
 /**
 * The root directory of this website
 */
@@ -32,6 +36,8 @@ if($_SERVER['SERVER_NAME'] == "localhost"){
 	$user = "root";
 	$password = "";
 	$root_dir = "/checkbook/";
+	$debug_mode = true;
+	ini_set('display_errors', 1);
 }else{
 	// PRODUCTION SETTINGS
 	$host = "???";
@@ -39,7 +45,10 @@ if($_SERVER['SERVER_NAME'] == "localhost"){
 	$user = "???";
 	$password = "???";
 	$root_dir = "/";
+	$debug_mode = false;
 }
+
+require_once("custom_error_handler.inc.php");
 
 // set up a connection to the db
 $link = mysqli_connect($host, $user, $password, $db);
