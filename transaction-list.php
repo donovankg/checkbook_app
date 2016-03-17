@@ -20,6 +20,7 @@ require_once("includes/header.inc.php");
 
 ?>
 
+<a href="transaction-details.php"> Create new transaction</a>
 <table border="1">
 	<thead>
 		<th>Date</th>
