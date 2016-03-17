@@ -14,6 +14,10 @@ require_once('includes/dataaccess/TransactionDataAccess.php');
 // get the transactions from the db
 $da = new TransactionDataAccess($link);
 $transactions = $da->get_all_transactions();
+
+$page_title = "Transaction List";
+require_once("includes/header.inc.php");
+
 ?>
 
 <table border="1">
@@ -40,3 +44,8 @@ $transactions = $da->get_all_transactions();
 	?>
 	</tbody>
 </table>
+
+<?php
+require_once("includes/footer.inc.php");
+
+?>

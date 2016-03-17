@@ -12,7 +12,11 @@
 require_once('includes/config.inc.php');
 require_once("includes/models/Transaction.php"); 
 require_once('includes/dataaccess/TransactionDataAccess.php');
-require_once('includes/models/Utils.php');
+require_once('includes/Utils.php');
+
+$page_title = "Transaction details";
+require_once("includes/header.inc.php");
+
 // test code
 $da = new TransactionDataAccess($link);
 $Utils = new Utils();
@@ -90,8 +94,6 @@ if(isset($_POST['btnSubmit'])){
 }
 
 ?>
-<link rel="stylesheet" href="<?php echo($root_dir);?>css/style.css" type="text/css" />
-<script src="<?php echo($root_dir);?>js/vendor/jquery-2.2.0.min.js"></script>
 
 <form id="frmTransactionDetails" action="<?php echo($_SERVER['PHP_SELF']); ?>" method="POST">
 	
@@ -112,6 +114,12 @@ if(isset($_POST['btnSubmit'])){
 	NOTES: <input type="text" name="txtNotes" id="txtNotes" value="<?php echo($transaction->notes); ?>" /><br>
 	<input type="submit" name="btnSubmit" value="SUBMIT" />
 </form>
+
+</script>
+<?php
+require_once("includes/footer.inc.php");
+
+?>
 
 <script>
 /*
@@ -196,7 +204,6 @@ jQuery(function(){
 		});
 	});
 });
-</script>
 
 
 
