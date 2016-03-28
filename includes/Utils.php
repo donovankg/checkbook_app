@@ -18,4 +18,12 @@ class Utils{
 		$str .= "</select>";
 		return $str;
 	}
+
+	function encrypt_password($password){
+	
+		$salt ="aps%&!";
+		return $salt.md5($password).$salt;
+
+	}
+
 }

@@ -25,6 +25,9 @@ $user;
 $password;
 $link;
 
+
+
+
 /**
 * Set up configuration base on the environment
 */

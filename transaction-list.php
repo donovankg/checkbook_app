@@ -6,6 +6,13 @@
 *
 * @author Niall Kader
 */
+session_start();
+// now to check if variable is true
+
+if(!$_SESSION['anything'])
+{
+    header('location:login.php');
+}
 
 require_once('includes/config.inc.php');
 require_once("includes/models/Transaction.php"); 

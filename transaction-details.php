@@ -1,4 +1,14 @@
 <?php
+session_start();
+// now to check if variable is true
+
+if(!$_SESSION['anything'])
+{
+    header('location:login.php');
+}
+
+
+
 /**
 * This page will display the details of a transaction, 
 * and allow for inserting and updating transactions.
@@ -141,7 +151,7 @@ jQuery(function(){
 		// handles the form submit, if this method returns false
 		// then the form will not post to the server
 		$("#frmTransactionDetails").submit(function(){
-
+			alert("clicked");
 			// set this to false if we find any errors
 			var isValid = true;
 
@@ -209,6 +219,6 @@ jQuery(function(){
 });
 
 
-
+</script>
 
 
