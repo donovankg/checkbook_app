@@ -1,7 +1,10 @@
 <?php
-session_start();
+//session_start();
 // now to check if variable is true
-
+require_once('includes/config.inc.php');
+require_once("includes/models/Transaction.php"); 
+require_once('includes/dataaccess/TransactionDataAccess.php');
+require_once('includes/Utils.php');
 if(!$_SESSION['anything'])
 {
     header('location:login.php');
@@ -19,10 +22,7 @@ if(!$_SESSION['anything'])
 * @author Niall Kader
 */
 
-require_once('includes/config.inc.php');
-require_once("includes/models/Transaction.php"); 
-require_once('includes/dataaccess/TransactionDataAccess.php');
-require_once('includes/Utils.php');
+
 
 $page_title = "Transaction details";
 require_once("includes/header.inc.php");

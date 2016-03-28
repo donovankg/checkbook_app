@@ -6,7 +6,7 @@
 *
 * @author Niall Kader
 */
-
+session_start();
 //this variable will turn the debug mode on (for development)
 //and off (for production)
 global $debug_mode;

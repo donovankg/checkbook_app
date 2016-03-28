@@ -1,6 +1,7 @@
 <?php
 
 $page_title = "Login Page";
+require_once('includes/config.inc.php');
 require_once("includes/header.inc.php");
 require_once('includes/Utils.php');
 require_once('includes/dataaccess/loginDataAccess.php');
@@ -41,6 +42,7 @@ if($_POST)
     $sUser=mysqli_real_escape_string($conn,$username);
     $sPass=mysqli_real_escape_string($conn,md5($password));
     // For Security 
+
     $query="SELECT * From users where user_email='$sUser' and user_password='$sPass' and user_active ='yes'" ;
     $result=mysqli_query($conn,$query);
 
@@ -48,7 +50,8 @@ if($_POST)
         //die();
     if(mysqli_num_rows($result)==1)
     {
-        session_start();
+        //session_start();
+        //s
         $_SESSION['anything']='something';
         header('location:transaction-list.php');
     }else{
@@ -56,6 +59,11 @@ if($_POST)
 
     }
 }
+
+    
+
+
+
 
 ?>
 

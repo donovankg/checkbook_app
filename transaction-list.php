@@ -6,17 +6,18 @@
 *
 * @author Niall Kader
 */
-session_start();
+//session_start();
 // now to check if variable is true
+require_once('includes/config.inc.php');
+require_once("includes/models/Transaction.php"); 
+require_once('includes/dataaccess/TransactionDataAccess.php');
+
 
 if(!$_SESSION['anything'])
 {
     header('location:login.php');
 }
 
-require_once('includes/config.inc.php');
-require_once("includes/models/Transaction.php"); 
-require_once('includes/dataaccess/TransactionDataAccess.php');
 
 // get the transactions from the db
 $da = new TransactionDataAccess($link);
@@ -24,7 +25,7 @@ $transactions = $da->get_all_transactions();
 
 $page_title = "Transaction List";
 require_once("includes/header.inc.php");
-
+require_once("includes/admin.inc.php");
 ?>
 
 <a href="transaction-details.php"> Create new transaction</a>
